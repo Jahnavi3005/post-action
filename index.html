@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript">
+		function store(){
+			let server=document.getElementById("server").value
+			console.log(server)
+			let password=document.getElementById("password").value
+			console.log(password)
+			fetch("http://localhost:4321/newData",{
+				method:"POST",
+				headers:{
+					"Content-Type":"application/json"
+				},
+				body:JSON.stringify({name:server,age:password})
+			})
+			.then((res)=>{
+				console.log(res)
+				if(res.status===200)
+					alert("Data added")
+			})
+			.catch((err)=>{
+				alert(err)
+			})
+		}
+	</script>
+	<style type="text/css">
+		body{
+			background-image: url(https://assets-global.website-files.com/614716f50b4f49202fdd0087/616949393cf90643c1403605_6423.png);
+			background-repeat: no-repeat;
+			background-size: 100%;
+			text-align: center;
+		}
+		.div1{
+			text-align: center;
+			margin: 19%;
+			font-size: 18px;
+
+		}
+		.submit{
+			border: 1px solid black;
+			font-size: 25px;
+			padding: 0.5%;
+			width: 25%;
+			border-radius: 25px;
+		}
+		#server{
+			font-size: 20px;
+			text-align: center;
+			padding: 0.8%;
+			border-radius: 25px;
+			border: 1px solid black;
+		}
+		#password{
+			font-size: 20px;
+			text-align: center;
+			padding: 0.8%;
+			border-radius: 25px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<input id="server" placeholder="Enter a message" />
+		<p><input id="password" placeholder="Enter password" /></p>
+		<p><button class="submit" onclick="store()">Submit</button></p>
+	</div>
+</body>
+</html>
