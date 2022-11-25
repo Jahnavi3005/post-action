@@ -7,15 +7,22 @@
 	<script type="text/javascript">
 		function store(){
 			let server=document.getElementById("server").value
-			console.log(server)
+			let email=document.getElementById("email").value
+			let mobile=document.getElementById("mobile").value
 			let password=document.getElementById("password").value
-			console.log(password)
+			let course=document.getElementById("course").value
+			let gmale=document.getElementById("gmale").checked
+			let gfemale=document.getElementById("gfemale").checked
+			console.log(server,email,mobile,password,course)
+			console.log(gmale,gfemale)
+			if(gmale==true) var gender="male" 
+				else var gender="female"
 			fetch("http://localhost:4321/newData",{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"
 				},
-				body:JSON.stringify({name:server,age:password})
+				body:JSON.stringify({name:server,email:email,mobile:mobile,age:password,course:course,gender:gender})
 			})
 			.then((res)=>{
 				console.log(res)
@@ -36,7 +43,7 @@
 		}
 		.div1{
 			text-align: center;
-			margin: 19%;
+			margin: 9%;
 			font-size: 18px;
 
 		}
@@ -44,8 +51,9 @@
 			border: 1px solid black;
 			font-size: 25px;
 			padding: 0.5%;
-			width: 25%;
+			width: 15%;
 			border-radius: 25px;
+			background-color: violet;
 		}
 		#server{
 			font-size: 20px;
@@ -61,12 +69,50 @@
 			border-radius: 25px;
 			border: 1px solid black;
 		}
+		#course{
+			border: 1px solid black;
+			width: 20%;
+			border-radius: 25px;
+			font-size: 20px;
+			padding: 0.6%;
+			text-align: center;
+		}
+		#email{
+			font-size: 20px;
+			text-align: center;
+			padding: 0.8%;
+			border-radius: 25px;
+			border: 1px solid black;
+		}
+		#mobile{
+			font-size: 20px;
+			text-align: center;
+			padding: 0.8%;
+			border-radius: 25px;
+			border: 1px solid black;
+		}
 	</style>
 </head>
 <body>
 	<div class="div1">
-		<input id="server" placeholder="Enter a message" />
+		<h1 style="text-align: center;">Registration Page</h1>
+		<input id="server" placeholder="Username" />
+		<p><input id="email" type="email" placeholder="Enter email-id" /></p>
+		<p><input id="mobile"  type="number" placeholder="Enter mobile number" /></p>
 		<p><input id="password" placeholder="Enter password" /></p>
+		<p>
+			<select id="course">
+				<option value="select course">select course</option>
+				<option value="Mpcs">Mpcs</option>
+				<option value="Mecs">Mecs</option>
+				<option value="Mscs">Mscs</option>
+				<option value="Others">Others</option>
+			</select>
+		</p>
+		<p>
+			<input type="radio" id="gmale" name="gender" />Male
+			<input type="radio" id="gfemale" name="gender" />Female
+		</p>
 		<p><button class="submit" onclick="store()">Submit</button></p>
 	</div>
 </body>
